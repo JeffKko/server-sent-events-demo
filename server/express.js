@@ -2,10 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const app = express()
-// const {
-//   getUid,
-//   crawlRuten,
-// } = require('./api.js')
 
 app.use(cors({
   origin: [
@@ -34,7 +30,8 @@ let eventList = [
   new ChatEvent('Hi'),
   new ChatEvent('你要來嗎？'),
   new ChatEvent('來啊 哪次不來了？'),
-  new ChatEvent('國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國'),
+  new ChatEvent('國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國'),
+  new ChatEvent('美利達 scultura 車系 新春優惠8折起'),
 ]
 
 let clientList = []
@@ -77,7 +74,7 @@ function sendHistory(res) {
 
   eventList.forEach(e => {
     id = e.id
-    res.write(`id: ${e.id}\ndata: ${e.message}\n\n`)
+    res.write(`id: ${e.id}\ndata: ${JSON.stringify(e)}\n\n`)
   })
 
   return id
@@ -88,92 +85,14 @@ app.post('/message', (req, res) => {
 
   const event = new ChatEvent(message)
 
-
   eventList.push(event)
 
   clientList.forEach(s => {
     console.log(event.id)
-    s.res.write(`id: ${event.id}\ndata: ${event.message}\n\n`)
+    s.res.write(`id: ${event.id}\ndata: ${JSON.stringify(event)}\n\n`)
   })
 
   res.status(200).end()
-})
-
-/**
- *  每天0, 9, 15時爬蟲
- */
-// schedule.scheduleJob('* 0,9,15 * * *', function(){
-// })
-
-app.get('/crawl/:id', (req, res) => {
-  console.log(req.params.id)
-  crawlEbayProduct(req.params.id)
-    .then(data => {
-      addProduct(data)
-      res.json(data)
-    })
-    .catch(err => {
-      res.status(400).json({ msg: err })
-    })
-})
-
-app.get('/product/:id', (req, res) => {
-  getEbayProduct(req.params.id)
-    .then(data => {
-      console.log('=============')
-      console.log(data)
-      res.json(data)
-    })
-    .catch(err => {
-      console.log('-----------')
-      console.log(err)
-      res.status(400).json({ msg: err })
-    })
-})
-
-app.post('/member/:uid/watchlist/:id', (req, res) => {
-  const {uid} = req.cookies
-  const productId = req.params.id
-  // console.log(req.cookies)
-  addWatchlist(uid, productId)
-    .then(() => res.json())
-    .catch(err => res.status(400).json({ msg: err }))
-})
-
-app.get('/member/:uid/watchlist', (req, res) => {
-  const uid = req.params.uid
-
-  console.log(uid)
-
-  getWatchlist(uid)
-    .then(data => res.json(data))
-    .catch(err => res.status(400).json({ msg: err }))
-})
-
-app.get('/recent/watchlist', (req, res) => {
-  getRecentWatchlist()
-    .then(data => res.json(data))
-    .catch(err => res.status(400).json({ msg: err }))
-})
-
-app.post('/hot-good/ebay', (req, res) => {
-  getEbayGoods(req.body.startTime, req.body.endTime)
-    .then(data => {
-      res.json(data)
-    })
-    .catch(err => {
-      res.status(400).json({ msg: err })
-    })
-})
-
-app.post('/hot-good/amazon', (req, res) => {
-  getAmazonGoods(req.body.startTime, req.body.endTime)
-    .then(data => {
-      res.json(data)
-    })
-    .catch(err => {
-      res.status(400).json({ msg: err })
-    })
 })
 
 module.exports = app

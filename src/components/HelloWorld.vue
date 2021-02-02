@@ -33,16 +33,12 @@ export default {
 
     onBeforeMount(() => {
       var eventSource = new EventSource('http://localhost:3333/event')
-      eventSource.addEventListener('ping', function(e) {console.log(e.data)})
+      eventSource.addEventListener('ping', function(e) { console.log(e.data) })
 
       //if no events specified
       eventSource.addEventListener('message', function(e) {
-        console.log(e)
-        console.log(+e.lastEventId)
-        messageList.value.push(new ChatEvent(
-          +e.lastEventId,
-          e.data,
-        ))
+        console.log(JSON.parse(e.data))
+        messageList.value.push(JSON.parse(e.data))
       })
 
       eventSource.addEventListener('open', function(e) {
@@ -75,10 +71,10 @@ export default {
     function sendMessage() {
       if (!text.value.trim()) return
 
-      const data = {
-        message: text.value,
-      }
+      const data = { message: text.value }
       const url = 'http://localhost:3333/message'
+
+      text.value = ''
 
       fetch(url, {
         body: JSON.stringify(data),
