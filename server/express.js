@@ -12,7 +12,12 @@ app.use(cors({
   credentials: true,
 }))
 app.use(cookieParser())
-// app.use('/ruruton', express.static(__dirname + '/dist'))
+
+console.log(express.static(process.cwd() + '/dist'))
+
+console.log(process.cwd())
+
+app.use('/', express.static(process.cwd() + '/dist'))
 app.use(express.json()) // parse json
 
 app.get('/test', (req, res) => {
