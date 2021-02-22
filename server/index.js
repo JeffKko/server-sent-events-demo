@@ -1,3 +1,7 @@
 const app = require('./express.js')
+const port = process.env.PORT || 8080
 
-app.listen(3333, () => console.log('Local app listening on port 3333!'))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+// $ export PORT=8000  //Mac
+// $ set PORT=8000  //Windows
