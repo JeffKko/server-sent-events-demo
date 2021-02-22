@@ -6,8 +6,7 @@ const app = express()
 app.use(cors({
   origin: [
     'http://www.example.com',
-    'http://localhost:3000',
-    'http://10.1.1.32:3000',
+    'http://localhost:8080',
   ],
   credentials: true,
 }))
@@ -101,12 +100,3 @@ app.post('/message', (req, res) => {
 })
 
 module.exports = app
-
-// const port = process.env.PORT || 8888;
-
-// app.listen(process.env.PORT, function() {
-//   console.log(`Example app listening on port ${port}!`);
-// })
-
-// $ export PORT=8000  //Mac
-// $ set PORT=8000  //Windows

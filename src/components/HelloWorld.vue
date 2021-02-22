@@ -32,7 +32,7 @@ export default {
     const $chatBox = ref(null)
 
     onBeforeMount(() => {
-      var eventSource = new EventSource('http://localhost:3333/event')
+      var eventSource = new EventSource('http://localhost:8080/event')
       eventSource.addEventListener('ping', function(e) { console.log(e.data) })
 
       //if no events specified
@@ -72,7 +72,7 @@ export default {
       if (!text.value.trim()) return
 
       const data = { message: text.value }
-      const url = 'http://localhost:3333/message'
+      const url = 'http://localhost:8080/message'
 
       text.value = ''
 
