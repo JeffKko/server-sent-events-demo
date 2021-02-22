@@ -100,9 +100,3 @@ app.post('/message', (req, res) => {
 })
 
 module.exports = app
-<<<<<<< HEAD
-=======
-
-// $ export PORT=8000  //Mac
-// $ set PORT=8000  //Windows
->>>>>>> 46a9f470fd53b6e62df1ebad35fbc1a8770b73b6
