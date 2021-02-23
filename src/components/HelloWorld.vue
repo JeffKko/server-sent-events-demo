@@ -23,8 +23,6 @@ class ChatEvent {
 
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
-console.log(API_ENDPOINT)
-
 export default {
   name: 'HelloWorld',
   props: {
@@ -36,8 +34,6 @@ export default {
     const $chatBox = ref(null)
 
     onBeforeMount(() => {
-      console.log(import.meta.env.MODE)
-
       const eventSource = new EventSource(`${API_ENDPOINT}/event`)
       eventSource.addEventListener('ping', function(e) { console.log(e.data) })
 
@@ -120,9 +116,11 @@ export default {
   text-align: left;
   padding: 24px;
 }
+
 .chat-box__message +.chat-box__message {
   margin-top: 8px;
 }
+
 .chat-box__message__text {
   display: inline-block;
   background-color: #7f8c8d;
@@ -130,6 +128,7 @@ export default {
   padding: 12px;
   border-radius: 15px;
 }
+
 .chat-box__message__datetime {
   display: inline-block;
   color: #95a5a6;
@@ -168,8 +167,5 @@ export default {
   margin: 0;
   background-color: #1abc9c;
   cursor: pointer;
-}
-
-@media (min-width: 1200px) {
 }
 </style>
