@@ -21,6 +21,10 @@ class ChatEvent {
   }
 }
 
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
+
+console.log(API_ENDPOINT)
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -32,7 +36,9 @@ export default {
     const $chatBox = ref(null)
 
     onBeforeMount(() => {
-      var eventSource = new EventSource('http://localhost:8080/event')
+      console.log(import.meta.env.MODE)
+
+      const eventSource = new EventSource(`${API_ENDPOINT}/event`)
       eventSource.addEventListener('ping', function(e) { console.log(e.data) })
 
       //if no events specified
@@ -72,7 +78,7 @@ export default {
       if (!text.value.trim()) return
 
       const data = { message: text.value }
-      const url = 'http://localhost:8080/message'
+      const url = `${API_ENDPOINT}/message`
 
       text.value = ''
 
