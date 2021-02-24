@@ -5,7 +5,6 @@ const app = express()
 
 app.use(cors({
   origin: [
-    'https://sse-vs-long-polling.herokuapp.com',
     'http://localhost:3000',
   ],
   credentials: true,
