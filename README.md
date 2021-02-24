@@ -1,6 +1,6 @@
 # server sent events demo
 
-This is a demo for Web Api => ```server sent events```, It's a chat room build on ```Vite```
+This is a demo for Web Api => ```server sent events```, It's a chat room build on ```Vite``` and ```Vue3```
 
 see [demo page](https://server-sent-event-demo.herokuapp.com/) on heroku
 
