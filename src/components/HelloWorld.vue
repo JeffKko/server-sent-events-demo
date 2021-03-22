@@ -34,7 +34,7 @@ export default {
     const $chatBox = ref(null)
 
     onBeforeMount(() => {
-      console.log('test circle ci')
+      console.log('test circle ci .(2)')
 
       const eventSource = new EventSource(`${API_ENDPOINT}/event`)
       eventSource.addEventListener('ping', function(e) { console.log(e.data) })
