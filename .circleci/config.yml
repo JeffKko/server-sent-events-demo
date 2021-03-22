@@ -46,6 +46,8 @@ workflows:
     jobs:
       - node/test
       - test:
+          context:
+            - slack-secrets
           requires:
             - node/test # only run job if the build job has completed
       - deploy:
